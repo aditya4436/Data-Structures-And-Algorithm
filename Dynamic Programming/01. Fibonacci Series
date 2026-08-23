@@ -1,0 +1,47 @@
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+public:
+    int fib(int n) {
+        if(n <= 1){
+            return n;
+        }
+        
+        int prev1 = 0, prev2 = 1;
+
+        for(int i = 2; i <= n; i++){
+            int val = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = val;
+        }
+
+        return prev2;
+    }
+};
+
+// Time Complexity: O(2^n)
+// Space Complexity: O(n) Recursion stack space
+class Solution {
+public:
+    int fib(int n) {
+        if(n == 0 || n == 1) return n;
+
+        return fib(n - 1) + fib(n - 2);
+    }
+};
+
+// Time Complexity: O(n)
+// Space Complexity: O(n) + O(n) recursion stack space
+class Solution {
+public:
+    int fib(int n) {
+        vector<int> dp(n + 1, -1);
+        if(n == 0 || n == 1) return n;
+
+        if(dp[n] != -1){
+            return dp[n];
+        }
+
+        return dp[n] = fib(n - 1) + fib(n - 2);
+    }
+};
